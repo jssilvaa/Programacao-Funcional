@@ -1,7 +1,3 @@
-{-# OPTIONS_GHC -Wno-unrecognised-pragmas #-}
-{-# HLINT ignore "Use infix" #-}
-{-# HLINT ignore "Use foldr" #-}
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
 {- 50 Questões -}
 
 -- 1 -- Constrói a lista de inteiros compreendidos entre x e y 
