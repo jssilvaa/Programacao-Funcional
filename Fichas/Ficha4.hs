@@ -1,7 +1,5 @@
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Ficha4 where
+-- Ficha 4 -- 
 import Data.Char 
-
 
 digitAlpha :: String -> (String, String)
 digitAlpha [] = ([],[])
