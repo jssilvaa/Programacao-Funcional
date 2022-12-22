@@ -1,5 +1,4 @@
-{-# LANGUAGE InstanceSigs #-}
-module Ficha8 where
+-- Ficha 8 --
 
 -- 1 -- 
 
@@ -96,7 +95,7 @@ instance (Ord a, Num a) => Num (Exp a) where
     fromInteger :: Integer -> Exp a 
     fromInteger a = Const (fromInteger a)
 
--- 3 -- 
+-- 3 -- (TODO)
 data Movimento = Credito Float | Debito Float 
 data Data = D Int Int 
 data Extracto = Ext Float [(Data, String, Movimento)]
