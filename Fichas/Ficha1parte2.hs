@@ -1,9 +1,8 @@
-module Haskell.Ficha1parte2 where
-
+-- Ficha 1 2ª Parte -- 
+module Ficha1parte2 where
 import Data.Char ( ord , chr )
--- Algebraic Data Types -- 
 
--- Exercício 5 --
+-- 5 --
 
 data Semaforo = Verde | Amarelo | Vermelho deriving (Show, Eq)
 
@@ -18,7 +17,7 @@ stop x = x == Vermelho
 safe :: Semaforo -> Semaforo -> Bool
 safe x y = not (x == Verde && y == Verde)
 
--- Exercício 6 -- 
+-- 6 -- 
 
 data Ponto = Cartesiano Double Double | Polar Double Double
              deriving (Show,Eq)
@@ -45,7 +44,7 @@ dist (Polar r a) (Cartesiano x y) = sqrt ((x - r * cos a)^2 + (y - r * sin a)^2)
 dist (Cartesiano x y) (Polar r a) = sqrt ((x - r * cos a)^2 + (y - r * sin a)^2)
 dist (Polar r1 a1) (Polar r2 a2) = sqrt ((r1 * cos a1 - r2 * cos a2)^2 + (r1 * sin a1 - r2  * sin a2)^2)
 
--- Exercício 7 -- 
+-- 7 --
 
 data Figura = Circulo Ponto Double
              | Retangulo Ponto Ponto
@@ -104,4 +103,3 @@ intToDigit i = chr (48 + i)
 
 digitToInt :: Char -> Int
 digitToInt c = ord c - 48
-
