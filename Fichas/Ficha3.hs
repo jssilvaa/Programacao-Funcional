@@ -1,5 +1,4 @@
-
-
+-- Ficha 3 --
 import Haskell.Ficha1parte2
 
 -- 2 --
