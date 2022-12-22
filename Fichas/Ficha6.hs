@@ -1,14 +1,8 @@
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Ficha6 where
+-- Ficha 6 --
 
 -- 1 -- 
 data BTree a = Empty
              | Node a (BTree a) (BTree a) deriving Show
-
---
-sampleBT :: BTree Int
-sampleBT = Node 1 (Node 2 (Node 4 Empty Empty) (Node 5 Empty Empty)) (Node 3 (Node 6 Empty Empty) (Node 7 Empty Empty))
---
 
 altura :: BTree a -> Int
 altura Empty = 0
