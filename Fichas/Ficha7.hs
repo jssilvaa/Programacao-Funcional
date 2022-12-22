@@ -1,4 +1,4 @@
-module Ficha7 where
+-- Ficha 7 --
 
 -- 1 --
 data ExpInt = Const Int
