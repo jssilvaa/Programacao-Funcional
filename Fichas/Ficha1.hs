@@ -6,7 +6,7 @@ truncate' :: Double -> Int -> Double
 truncate' x n = fromIntegral (floor (x*t)) / t
     where t = 10^n
 
--- Exercício 1 
+-- 1 --
 perimetro :: (Ord p, Floating p) => p -> p
 perimetro r | r < 0 = 0
 perimetro r | r >= 0 = 2*pi*r
@@ -33,7 +33,7 @@ max2 x y = if x > y then x else y
 max3 :: Integral a => a -> a -> a -> a
 max3 x y z = max2 (max2 x y) z
 
--- Exercício 2 
+-- 2 --
 nRaizes :: (Ord a, Num p, Num a) => a -> a -> a -> p
 nRaizes a b c
   | d == 0 = 1
@@ -53,8 +53,7 @@ raizes a b c
       r2 = 1 / (2 * a) * ((- b) - sqrt d)
 
 
--- Exercício 3 
---type Hora = (Int,Int)
+-- 3 --
 data Hora = H Int Int deriving (Show,Eq)
 
 valida :: (Ord a, Num a) => (a, a) -> Bool
@@ -109,7 +108,3 @@ strcmp s1 s2 = case (s1, s2) of
      | toUpper s1 == toUpper s2 -> strcmp ss1 ss2 
      | otherwise -> False 
    _ -> False 
-
-
-
-
