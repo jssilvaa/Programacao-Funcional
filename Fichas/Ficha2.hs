@@ -1,10 +1,10 @@
 -- Ficha 2: Funções recursivas sobre listas --
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
+
 import Data.Char ( ord , chr )
 import GHC.Integer (floatFromInteger)
 import GHC.Base (absentErr)
 
--- Exercício 1 
+-- 1 --
 funC :: [Int] -> [Int]
 funC (x:y:t) = funC t
 funC [x] = [x]
@@ -16,7 +16,7 @@ g :: [a] -> [a] -> [a]
 g acc [] = acc
 g acc (h:t) = g (h:acc) t
 
--- Exercício 2
+-- 2 --
 dobros :: [Float] -> [Float]
 dobros [] = []
 dobros (h:t) = (2 * h) : dobros t
@@ -56,7 +56,7 @@ sumTriplos [(x,y,z)] = (x,y,z)
 sumTriplos (x:y:t) = sumTriplos (soma3 x y : t)
    where soma3 (a,b,c) (a',b',c') = (a+a',b+b',c+c')
 
--- Exercício 3 
+-- 3 -- 
 soDigitos :: [Char] -> [Char]
 soDigitos [] = []
 soDigitos (h:t) = if ord h >= ord '0' && ord h <= ord '9' then h : soDigitos t else soDigitos t
@@ -73,7 +73,7 @@ nums (h:t)
   | ord h >= ord '0' && ord h <= ord '9' = (ord h - ord '0') : nums t
   | otherwise = nums t
 
--- Exercício 4 
+-- 4 -- 
 
 type Polinomio = [Monomio]
 type Monomio = (Float, Int)
