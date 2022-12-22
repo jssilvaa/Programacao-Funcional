@@ -1,3 +1,5 @@
+
+
 import Haskell.Ficha1parte2
 
 -- 2 --
@@ -211,12 +213,6 @@ creDeb (Ext a ((x,y, Credito z):t)) = (z+ls, rs)
    where (ls,rs) = creDeb (Ext a t)
 creDeb (Ext a ((x,y, Debito z):t)) = (ls, z+rs)
    where (ls,rs) = creDeb (Ext a t)
-
-{- Foreground de creDeb 
-creDeb extrato <--> creDeb (Ext 560 ((x,y, Debito 400):(x',y', Credito 2000):[])) <-->  
-<--> (ls, 400 + rs) <--> creDeb (Ext 560 ((x',y', Credito 2000):[])) <--> (2000 + ls, rs) <--> 
-<--> creDeb (Ext 560 []) = (0,0) <--> (2000 + 0, 0) <--> (2000, 400 + 0) <--> (2000, 400) 
--}
 
 saldo :: Extracto -> Float
 saldo (Ext saldo xs) = let (cre, deb) = creDeb (Ext saldo xs)
