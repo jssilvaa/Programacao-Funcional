@@ -1,5 +1,4 @@
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Ficha5 where
+-- Ficha 5 -- 
 import qualified Data.Bifunctor
 
 -- Funções de ordem superior -- 
