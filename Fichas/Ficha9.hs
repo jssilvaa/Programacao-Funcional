@@ -107,5 +107,24 @@ geraChave = do n1 <- randomRIO (1,50)
                let ap = Ap l e 
                if valida ap then return ap else geraChave 
 
+-- 2 f -- 
+main :: IO ()
+main = do key <- geraChave 
+          ciclo key 
 
-                
+ciclo :: Aposta -> IO ()
+ciclo key = do option <- menu 
+               case option of "0" -> putStrLn "Obrigado por jogar!"
+                              "1" -> joga key
+                              "2" -> main 
+
+menu :: IO String 
+menu = do putStrLn menutxt
+          putStr "> Option: "
+          c <- getLine 
+          return c 
+  where menutxt = unlines ["", 
+                           "Apostar ............ 1", 
+                           "Gerar nova chave  .. 2", 
+                           "", 
+                           "Sair ............... 0"]
