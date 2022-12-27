@@ -1,7 +1,7 @@
--- Ficha 8 --
+-- Ficha 8 :: Classe de Tipos -- 
+import Data.List ( sortBy )
 
 -- 1 -- 
-
 data Frac = F Integer Integer
 
 mdc :: Integer -> Integer -> Integer
@@ -95,8 +95,57 @@ instance (Ord a, Num a) => Num (Exp a) where
     fromInteger :: Integer -> Exp a 
     fromInteger a = Const (fromInteger a)
 
--- 3 -- (TODO)
+-- 3 -- 
 data Movimento = Credito Float | Debito Float 
-data Data = D Int Int 
+data Data = D Int Int Int 
 data Extracto = Ext Float [(Data, String, Movimento)]
 
+-- 3 a --
+instance Eq Data where 
+    (==) (D d1 m1 a1) (D d2 m2 a2) = d1 == d2 && m1 == m2 && a1 == a2 
+
+instance Ord Data where 
+    compare (D d1 m1 a1) (D d2 m2 a2) 
+       | a1 > a2 = GT 
+       | a1 < a2 = LT 
+       | m1 > m2 = GT 
+       | m1 < m2 = LT 
+       | d1 > d2 = GT 
+       | d1 < d2 = LT 
+       | otherwise = EQ 
+
+-- 3 b -- 
+instance Show Data where 
+    show (D d m a) = show a ++ "/" ++ show m ++ "/" ++ show d
+
+-- 3 c -- 
+ordena :: Extracto -> Extracto
+ordena (Ext a l) = Ext a (sortBy sortData l)
+    where sortData (a,_,_) (b,_,_) | a < b = GT
+                                   | a == b = EQ  
+                                   | a > b = LT
+-- 3 d -- 
+
+-- sample extract -- 
+sample = Ext 300 [(D 5 4 2010, "DEPOSITO", Credito 2000), (D 10 8 2010, "COMPRA", Debito 37.5), (D 1 9 2010, "LEV", Debito 60),
+                  (D 7 1 2011, "JUROS", Credito 100), (D 22 1 2011, "ANUIDADE", Debito 8)]
+
+calcSaldo :: Extracto -> Float 
+calcSaldo (Ext vi l) = vi + (sum . map (\(_,_,mov) -> (case mov of Credito x -> x
+                                                                   Debito  y -> negate y))) l 
+
+instance Show Extracto where
+    show (Ext saldo lista) = unlines (["Saldo anterior: " ++ show saldo,
+                                      "---------------------------------------",
+                                      "Data       Descricao   Cred   Debito",
+                                      "---------------------------------------"
+                                      ] ++ movs l' ++ [
+                                      "---------------------------------------",
+                                      "Saldo atual: " ++ show sAtual])
+        where sAtual = calcSaldo (Ext saldo lista )
+              (Ext _ l') = ordena (Ext saldo lista)
+              movs = map (\(date, descr, mov) -> 
+                show date ++ (replicate (11 - length (show date)) ' ') ++ descr ++ (replicate (12 - length descr) ' ') 
+                ++ ((case mov of Credito x -> show x 
+                                 Debito  y -> (replicate 7 ' ') ++ show y)))
+            
