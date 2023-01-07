@@ -175,4 +175,4 @@ vectorSum = zipWith' (+)
 type Matrix = [Vector]
 
 matrixSum :: Matrix -> Matrix -> Matrix 
-matrixSum = zipWith' (zipWith' (+))
+matrixSum = zipWith' (zipWith' (+)) -- alternativamente, podemos fazer zipWith' . zipWith' $ (+)
