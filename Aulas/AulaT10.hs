@@ -3,7 +3,7 @@ TODO (T9+T10)
 1. Def. BTrees: lista to BTree e Inverso DONE (Inorder, intra-order & post-order) 
 2. BST - funções associadas / vantagens DONE  
 3. Quicksort em BST's DONE
-4. Multitrees e Ficheiros - find, path, etc. DONE
+4. RTRees e Ficheiros - find, path, etc. DONE
 5. Expressões em árvores DONE
 -}
 
