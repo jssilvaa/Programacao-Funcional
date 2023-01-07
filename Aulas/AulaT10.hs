@@ -1,6 +1,3 @@
-{-# OPTIONS_GHC -Wno-incomplete-patterns #-}
-module Aulas.AulaT10 where
-
 {-
 TODO (T9+T10)
 1. Def. BTrees: lista to BTree e Inverso DONE (Inorder, intra-order & post-order) 
