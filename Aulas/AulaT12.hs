@@ -23,7 +23,7 @@ Termos conceptuais
 - IO 
 -}
 
--- Funções pré-definida -- 
+-- Funções pré-definidas -- 
 getLine' :: IO String
 getLine' = do x <- getChar
               if x == '\n' then return ""
@@ -65,7 +65,6 @@ lancaNDados n = do x <- randomRIO (1,6)
 -- baralha :: [a] -> IO [a]
 baralha [] = return []
 baralha (h:t) = do tb <- baralha t
-                   p <- randomRIO (0, length t) 
+                   p <- randomRIO (0, length t - 1) 
                    let (a,b) = splitAt p tb 
                    return (a ++ [h] ++ b)
-
