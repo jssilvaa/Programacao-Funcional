@@ -1,5 +1,3 @@
-module Aulas.AulaT13 where
-
 {- Conteúdo Lecionado 
 1. Revisões, essencialmente;
 2. Aplicação dos conteúdos lecionados na resolução de um problema, que consiste 
