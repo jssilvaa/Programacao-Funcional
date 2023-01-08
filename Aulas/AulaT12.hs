@@ -1,4 +1,3 @@
-module Aulas.AulaT12 where
 import System.Random
 
 {- Conteúdo Lecionado 
