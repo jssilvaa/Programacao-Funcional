@@ -1,41 +1,39 @@
-{-# LANGUAGE InstanceSigs #-}
-module Aulas.AulaT11 where 
-
 {- 
 Matéria Lecionada: 
-1. Classes <-> uma classe é um corpo de objetos que partilham propriedades semelhantes
+1. Classes <-> uma classe é uma organização de objetos (sócios) que partilham propriedades semelhantes
 que se reflete numa série de funções que, embora diferentes, tem o mesmo intuito. 
 2. Instâncias <-> Declarar uma estrutura de dados D como instância da classe A 
 é definir como é que um número x de funções essenciais (que determinam as restantes) irão operar sobre essa estrutura, para que 
-possam partilhar de um número y >= x maior de mais funções giras que podem atuar sobre esse tipo. 
+possam partilhar de um número y >= x maior de mais funções que podem atuar sobre esse tipo. 
 3. O professor referiu classes de construtores (? mas não temos maturidade para isso, só pode estar a brincar) 
-e ainda chegou a mencionar (assunto da próxima aula) I/O. 
+e ainda chegou a mencionar (assunto da próxima aula) IO. 
 
 
 Exemplos Utilizados
 -> Classe Eq e classe Show. Criamos um tipo para números fracionários, data Frac = F Int Int. Ao F chamamos 
-de construtor de tipo, F :: Int -> Int -> Frac. 
+de construtor de tipo, F :: Int -> Int -> Frac, que constrói um Frac com base em 2 Int's.
 -> Definimos a igualdade entre números fracionários como a igualdade do produto cruzado (a desigualdade é simplesmente 
 negar a igualdade, pelo que definir uma ou outra é indiferente, a outra fica automaticamente determinada pela negação da anterior). 
 -> Definimos duas formas de mostrar um número fracionário, a maneira standard feita pelo ghci -> "F x y" (fazendo data Frac = F Int Int deriving Show)
 e açúcar sintático como "x/y". Isto explica a maneira como vemos listas como [x,y,z] e não x : y : z : []. 
--> O mesmo foi feito para btrees, desta vez com o acréscimo de que o tipo da btree deve ser igualmente instância da 
-classe em questão (Eq ou Show) (ou seja, se a BTree for do tipo BTree a, para que a BTree seja comparável é necessário que 
-os seus elementos individuais do tipo a sejam comparáveis) pelo que temos impor essa restrição ao instanciar como classe. 
--> Isso faz-se com instance (Eq a) => Eq (BTree a) where e lê-se como "BTree a é instanciado na classe Eq na condição 
-de a ser uma instância da classe Eq, onde (define-se de seguida como comparar BTrees de a). Ver exemplo no fim do ficheiro."
+-> O mesmo foi feito para BTrees, desta vez com o acréscimo de que o tipo da BTree deve ser igualmente instância da 
+classe em questão (restrição Eq ou Show) (ou seja, se a BTree for do tipo BTree a, para que a BTree seja comparável (Eq) é necessário que 
+os seus elementos individuais do tipo a sejam comparáveis (Eq a)) pelo que temos impor essa restrição ao instanciar como classe. 
+-> Isso faz-se com: instance (Eq a) => Eq (BTree a) where... e lê-se como "BTree a é instanciado na classe Eq na condição 
+de 'a' ser uma instância da classe Eq, where... (define-se de seguida como comparar BTrees de a). Ver exemplo lá pró fim"
  -}
 
-
 -- 1ª Parte -- 
-
-{-
+{- Definição da classe Eq no gchi 
 class Eq a where 
     (==) :: a -> a -> Bool 
     (/=) :: a -> a -> Bool 
     {-# MINIMAL (==) | (/=) #-}
     (==) a b = not ((/=) a b)  
     (/=) a b = not ((==) a b)  
+
+a signature do MINIMAL determina quais as funções a definir 
+para que uma estrutura possa ser instanciada na classe em questão (Eq neste caso)
 -}
 
 -- Samples -- 
@@ -54,8 +52,11 @@ c2 = N 5 (N 3 (N 2 V V) (N 4 V V)) (N 3 (N 2 V V) (N 4 V V)) :: BTree Int
 d2 = N 5 V (N 3 (N 2 V V) (N 4 V V)) :: BTree Int 
 -- 
 
+-- Tipo Fracionário --
 data Frac = F Int Int 
 
+
+-- Duas frações a/b e c/d são iguais sse a*d = b*c
 instance Eq Frac where 
     (==) :: Frac -> Frac -> Bool 
     (==) (F a b) (F c d) = a*d == b*c 
@@ -63,7 +64,7 @@ instance Eq Frac where
 instance Show Frac where 
     show :: Frac -> String 
     --show (F x y) = "F " ++ show x ++ " " ++ show y
-    show (F x y) = show x ++ "/" ++ show y 
+    show (F x y) = show x ++ "/" ++ show y -- show's diferentes aqui. show x e show y convertem Int para String 
 
 data Temperature = C Double | K Double 
 
@@ -94,4 +95,3 @@ instance (Show a) => Show (BTree a) where
     --show (N e l r) = "(" ++ show l ++ ")" ++ " " ++ show e ++ " (" ++ show r ++ ")" 
     show V = ""
     show (N e l r) = "N " ++ show e ++ " (" ++ show l ++ ") (" ++ show r ++ ")"  
-
