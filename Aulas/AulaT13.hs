@@ -44,5 +44,5 @@ geraAlt s = if null a then [Const (read s)]
 -- esse valor.
 solve :: String -> Int -> Maybe String 
 solve [] _ = Nothing 
-solve s x = if null p then Nothing else Just $ ((fst . head) p)
+solve s x = if null p then Nothing else Just $ fst . head $ p
     where p = filter (\(_,y) -> x == y) [(show e, calcula e) | e <- geraAlt s]
