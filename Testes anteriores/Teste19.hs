@@ -105,4 +105,6 @@ magic m =
     (==) 1 ((length . nub . map sum) m) && (==) 1 ((length . nub . map sum . transpose) m)
     && (==) (trace m) v 
     && (==) (antitrace m) v
+    && (==) v v'
     where v = (head . map sum) m 
+          v' = (head . map sum . transpose) m  
